@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Newva : MonoBehaviour
 {
-    [SerializeField] float xValue = 0;
-    [SerializeField] float yValue = 0.02f;
-    [SerializeField] float zValue = 0;
-
+    [SerializeField] float moveSpeed = 10f;
    void Start()
     {
        
@@ -15,6 +12,9 @@ public class Newva : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(xValue, yValue, zValue);
+        float xValue = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
+        float zValue = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
+        
+        transform.Translate(xValue, 0, zValue);
     }
 }
