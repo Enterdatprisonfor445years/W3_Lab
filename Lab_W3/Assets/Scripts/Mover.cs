@@ -8,12 +8,12 @@ public class Newva : MonoBehaviour
     [SerializeField] float jumpStrength = 7f;
     [SerializeField] LayerMask groundFloor;
 
-    Rigidbody rb;
+    [SerializeField] Rigidbody rb;
     bool isGrounded;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         PrintInstructions();
     }
 
@@ -43,12 +43,14 @@ public class Newva : MonoBehaviour
     void Jump()
     {
  
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f, groundFloor);
+        isGrounded = Physics.Raycast(transform.position, new Vector3(0f, -1f, 0f), .30f); //groundFloor
+        Debug.Log(isGrounded);
 
         // Jump when player presses spacebar and is grounded
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
+            Debug.Log("Jumping");
+            rb.AddForce(Vector3.up * jumpStrength); //, ForceMode.Impulse
         }
     }
 }
